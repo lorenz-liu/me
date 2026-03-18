@@ -13,3 +13,11 @@ My interests lie in interdisciplinary machine learning, particularly its applica
 - **Human-Centered AI**: I search for methods to control AI behaviors and align them with human values and goals.
 
 I obtained my [Master of Science in Applied Computing (MScAC)](https://mscac.utoronto.ca) from the University of Toronto and my [Bachelor of Engineering in Computer Science and Technology](https://scse.buaa.edu.cn) from Beihang University.
+
+<span style="color: #666666;">
+I also play cello, tennis, and guitar.
+</span>
+
+<span style="color: #666666;">
+My favorite artists are The Eagles, Durand Jones & The Indications, Dvorak, and Monet.
+</span>

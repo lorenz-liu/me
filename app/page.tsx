@@ -3,7 +3,6 @@ import path from 'path';
 import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import Image from 'next/image';
 import { formatDate } from '@/lib/utils';
 
 function ArrowIcon() {
@@ -71,16 +70,6 @@ export default function Home() {
     <div>
     <ul>
     <div>
-      <div className="mb-8">
-        <Image
-          src="/me.svg"
-          alt="Logo"
-          width={120}
-          height={120}
-          priority
-        />
-      </div>
-
       <div className="mb-8 leading-relaxed prose prose-neutral max-w-none">
         <ReactMarkdown
           rehypePlugins={[rehypeRaw]}
