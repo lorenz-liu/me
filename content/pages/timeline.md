@@ -3,31 +3,31 @@ title: "Timeline"
 ---
 
 - date: "2019-06-05"
-  description: "Graduated from Chengdu No.7 High School. "
+  description: "Graduated from *Chengdu No.7 High School*. "
 
 - date: "2019-09-01"
-  description: "Started undergrad at the School of Computer Science and Engineering, Shi'E College, Beihang University. "
+  description: "Started undergrad at *School of Computer Science and Engineering, Shi'E College, Beihang Universit*. "
 
 - date: "2023-03-16"
-  description: "IEEE Internet of Things Journal accepted Temporal Transformer Networks With Self-Supervision for Action Recognition. "
+  description: "<u>IEEE Internet of Things</u> accepted *Temporal Transformer Networks With Self-Supervision for Action Recognition*. "
 
 - date: "2023-07-01"
-  description: "Obtained B.Eng. in Computer Science and Technology from Beihang University. "
+  description: "Obtained <u>B.Eng. in Computer Science and Technology</u> from *Beihang University*. "
 
 - date: "2023-09-01"
-  description: "Started Master of Science in Applied Computing (MScAC), School of Computer Science, University of Toronto. "
+  description: "Started <u>Master of Science in Applied Computing (MScAC)</u> at *School of Computer Science, University of Toronto*. "
 
 - date: "2024-05-01"
-  description: "Started working at University Health Network as an Intern Machine Learning Researcher. "
+  description: "Started working at *University Health Network* as an <u>Intern Machine Learning Researcher</u>. "
 
 - date: "2024-05-16"
-  description: "International Journal of Human–Computer Interaction accepted CrossKeys: Text Entry for Virtual Reality Using a Single Controller via Wrist Rotation. "
+  description: "<u>International Journal of Human–Computer Interaction</u> accepted *CrossKeys: Text Entry for Virtual Reality Using a Single Controller via Wrist Rotation*. "
 
 - date: "2025-01-01"
-  description: "Obtained and graduated from MScAC. "
+  description: "Obtained and graduated from <u>MScAC</u>. "
 
 - date: "2025-02-10"
-  description: "Returned to University Health Network as a full-time Machine Learning Specialist. "
+  description: "Returned to *University Health Network* as a full-time <u>Machine Learning Specialist</u>. "
 
 - date: "2026-02-27"
-  description: "SAIL 2026 accepted AI-Driven Decision Support for Mass-Casualty Incident Preparedness Training: Development and Validation of the MasTER Simulation Platform"
+  description: "<u>SAIL 2026</u> accepted *AI-Driven Decision Support for Mass-Casualty Incident Preparedness Training: Development and Validation of the MasTER Simulation Platform*. "

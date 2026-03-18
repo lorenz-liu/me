@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import { formatDate } from '@/lib/utils';
 
 function ArrowIcon() {
@@ -76,12 +78,22 @@ export default function Home() {
       <div className="mb-8">
         {timeline.map((item, index) => (
           <div key={index} className="flex flex-col md:flex-row mb-4 gap-2">
-            <p className="text-neutral-600 tabular-nums md:w-[25%] flex-shrink-0">
+            <p className="text-neutral-600 tabular-nums md:w-[25%] flex-shrink-0 text-sm">
               {formatDate(item.date, false)}
             </p>
-            <p className="text-neutral-900 tracking-tight md:w-[75%]">
-              {item.description}
-            </p>
+            <div className="text-neutral-900 tracking-tight md:w-[75%] text-sm prose prose-neutral prose-sm max-w-none">
+              <ReactMarkdown
+                rehypePlugins={[rehypeRaw]}
+                components={{
+                  p: ({ children }) => <span>{children}</span>,
+                  strong: ({ children }) => <span className="italic">{children}</span>,
+                  em: ({ children }) => <em className="italic">{children}</em>,
+                  u: ({ children }) => <span className="underline">{children}</span>,
+                }}
+              >
+                {item.description}
+              </ReactMarkdown>
+            </div>
           </div>
         ))}
       </div>
