@@ -48,6 +48,78 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Hepta Slab';
+  src: url('/fonts/hepta-slab/HeptaSlab-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hepta Slab';
+  src: url('/fonts/hepta-slab/HeptaSlab-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hepta Slab';
+  src: url('/fonts/hepta-slab/HeptaSlab-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hepta Slab';
+  src: url('/fonts/hepta-slab/HeptaSlab-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hepta Slab';
+  src: url('/fonts/hepta-slab/HeptaSlab-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hepta Slab';
+  src: url('/fonts/hepta-slab/HeptaSlab-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hepta Slab';
+  src: url('/fonts/hepta-slab/HeptaSlab-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hepta Slab';
+  src: url('/fonts/hepta-slab/HeptaSlab-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hepta Slab';
+  src: url('/fonts/hepta-slab/HeptaSlab-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   background: #ffffff;
   color: #000000;
@@ -56,6 +128,11 @@ body {
 
 .font-raleway-dots {
   font-family: 'Raleway Dots', sans-serif;
+}
+
+.font-hepta-slab {
+  font-family: 'Hepta Slab', serif;
+  font-weight: 300;
 }
 
 .prose {

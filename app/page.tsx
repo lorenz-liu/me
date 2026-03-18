@@ -98,7 +98,7 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="flex gap-4 text-sm">
+      <div className="mt-8 flex gap-4 text-sm">
         {links.github && (
           <a
             href={links.github}
@@ -124,7 +124,7 @@ export default function Home() {
       </div>
     </div>
     </ul>
-  <p className="mt-8 text-xs text-neutral-600 dark:text-neutral-300">
+  <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-300">
     © {new Date().getFullYear()} GNU GENERAL PUBLIC LICENSE
   </p>
     </footer>
