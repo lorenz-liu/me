@@ -87,6 +87,11 @@ export default function Home() {
           components={{
             ul: ({ children }) => <ul className="list-disc ml-6 space-y-2">{children}</ul>,
             li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+            a: ({ href, children }) => (
+              <a href={href} target="_blank" rel="noopener noreferrer">
+                {children}
+              </a>
+            ),
           }}
         >
           {homeContent}
