@@ -18,7 +18,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-white text-black">
         <div className="max-w-3xl mx-auto px-6 py-12">
           <nav className="mb-8 border-b pr-3 border-gray-200 flex items-end-safe justify-between">
-            <div className="flex mb-2 gap-6 text-lg font-hepta-slab">
+            <div className="flex mb-2 gap-6 text-2xl font-hepta-slab font-extralight">
               <Link href="/" className="hover:text-gray-600 transition-colors">
                 home
               </Link>

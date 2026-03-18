@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-hepta-slab: 'Hepta Slab', serif;
+  --font-raleway-dots: 'Raleway Dots', sans-serif;
+}
+
 @font-face {
   font-family: 'Quicksand';
   src: url('/fonts/quicksand/Quicksand-Regular.ttf') format('truetype');
@@ -132,7 +137,6 @@ body {
 
 .font-hepta-slab {
   font-family: 'Hepta Slab', serif;
-  font-weight: 300;
 }
 
 .prose {
