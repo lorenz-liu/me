@@ -1,33 +1,100 @@
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import Link from 'next/link';
+import { formatDate } from '@/lib/utils';
 
-const homeContent = `# Welcome
+function getBlogPosts() {
+  const blogDir = path.join(process.cwd(), 'content/blog');
+  const files = fs.readdirSync(blogDir);
 
-I'm a developer passionate about building great web experiences.
+  const posts = files
+    .filter(file => file.endsWith('.md'))
+    .map(file => {
+      const filePath = path.join(blogDir, file);
+      const fileContent = fs.readFileSync(filePath, 'utf8');
+      const { data } = matter(fileContent);
 
-## Background
+      return {
+        slug: file.replace('.md', ''),
+        title: data.title || 'Untitled',
+        date: data.date || '',
+      };
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
-- Experience in web development
-- Focus on modern technologies
-- Always learning new things
+  return posts;
+}
 
-## Skills
+function getHomeContent() {
+  const filePath = path.join(process.cwd(), 'content/pages/home.md');
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const { content } = matter(fileContent);
+  return content;
+}
 
-- **Frontend**: React, Next.js, TypeScript
-- **Styling**: Tailwind CSS
-- **Tools**: Git, VS Code
-
-## Interests
-
-When I'm not coding, I enjoy exploring new technologies and contributing to open source projects.
-`;
+function getLinks() {
+  const filePath = path.join(process.cwd(), 'content/pages/links.md');
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const { data } = matter(fileContent);
+  return data;
+}
 
 export default function Home() {
+  const recentPosts = getBlogPosts();
+  const homeContent = getHomeContent();
+  const links = getLinks();
+
   return (
-    <article className="prose prose-neutral max-w-none">
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+    <div>
+      <p className="mb-8 leading-relaxed">
         {homeContent}
-      </ReactMarkdown>
-    </article>
+      </p>
+
+      <div className="mb-8">
+        {recentPosts.map(post => (
+          <Link
+            key={post.slug}
+            className="flex flex-col space-y-1 mb-4"
+            href={`/blog/${post.slug}`}
+          >
+            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
+              <p className="text-neutral-600 w-[100px] tabular-nums">
+                {formatDate(post.date, false)}
+              </p>
+              <p className="text-neutral-900 tracking-tight">
+                {post.title}
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      <div className="flex gap-4 text-sm">
+        {links.github && (
+          <a
+            href={links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-neutral-600 hover:text-neutral-900 transition-colors"
+          >
+            <span>↗</span>
+            <span>github</span>
+          </a>
+        )}
+        {links.linkedin && (
+          <a
+            href={links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-neutral-600 hover:text-neutral-900 transition-colors"
+          >
+            <span>↗</span>
+            <span>linkedin</span>
+          </a>
+        )}
+      </div>
+    </div>
   );
 }
