@@ -8,15 +8,15 @@ import { formatDate } from '@/lib/utils';
 function ArrowIcon() {
   return (
     <svg
-      width="12"
-      height="12"
+      width="10"
+      height="10"
       viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
         d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
-        fill="currentColor"
+        fill="#999999"
       />
     </svg>
   )
@@ -67,8 +67,7 @@ export default function Home() {
   const links = getLinks();
 
   return (
-
-    <footer className="mb-16">
+    <div>
     <ul>
     <div>
       <p className="mb-8 leading-relaxed">
@@ -98,7 +97,7 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="mt-8 flex gap-4 text-sm">
+      <div className="mt-12 flex gap-4">
         {links.github && (
           <a
             href={links.github}
@@ -127,6 +126,6 @@ export default function Home() {
   <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-300">
     © {new Date().getFullYear()} GNU GENERAL PUBLIC LICENSE
   </p>
-    </footer>
+    </div>
   );
 }
