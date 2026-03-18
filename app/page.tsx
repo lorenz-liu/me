@@ -81,9 +81,17 @@ export default function Home() {
         />
       </div>
 
-      <p className="mb-8 leading-relaxed">
-        {homeContent}
-      </p>
+      <div className="mb-8 leading-relaxed prose prose-neutral max-w-none">
+        <ReactMarkdown
+          rehypePlugins={[rehypeRaw]}
+          components={{
+            ul: ({ children }) => <ul className="list-disc ml-6 space-y-2">{children}</ul>,
+            li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+          }}
+        >
+          {homeContent}
+        </ReactMarkdown>
+      </div>
 
       <div className="mb-8">
         {timeline.map((item, index) => (

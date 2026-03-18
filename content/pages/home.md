@@ -4,7 +4,7 @@ title: "Home"
 
 Greetings! My name is Zhaoxun "Lorenz" Liu.
 
-I am a Team Lead in Machine Learning at the SARA Lab, University Health Network (UHN).
+I am a Team Lead in Machine Learning at [the SARA Lab](https://temertysimcentre.com/surgical-artificial-intelligence-research-academy-sara/), University Health Network (UHN).
 
 My interests lie in interdisciplinary machine learning, particularly its applications in healthcare and human-computer interaction:
 
