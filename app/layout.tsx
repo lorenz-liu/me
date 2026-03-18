@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="antialiased">
       <body className="min-h-screen bg-white text-black">
-        <div className="max-w-2xl mx-auto px-6 py-12">
+        <div className="max-w-3xl mx-auto px-6 py-12">
           <nav className="mb-8 pb-2 border-b border-gray-200">
             <div className="flex gap-6 text-lg font-hepta-slab">
               <Link href="/" className="hover:text-gray-600 transition-colors">
