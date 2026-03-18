@@ -1,30 +1,48 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
 
-function getBlogPosts() {
-  const blogDir = path.join(process.cwd(), 'content/blog');
-  const files = fs.readdirSync(blogDir);
+function ArrowIcon() {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
 
-  const posts = files
-    .filter(file => file.endsWith('.md'))
-    .map(file => {
-      const filePath = path.join(blogDir, file);
-      const fileContent = fs.readFileSync(filePath, 'utf8');
-      const { data } = matter(fileContent);
+function getTimeline() {
+  const filePath = path.join(process.cwd(), 'content/pages/timeline.md');
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const { content } = matter(fileContent);
 
-      return {
-        slug: file.replace('.md', ''),
-        title: data.title || 'Untitled',
-        date: data.date || '',
-      };
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
+  // Parse the YAML-like content
+  const lines = content.trim().split('\n');
+  const timeline: Array<{ date: string; description: string }> = [];
 
-  return posts;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line.startsWith('- date:')) {
+      const date = line.replace('- date:', '').trim().replace(/"/g, '');
+      const descLine = lines[i + 1]?.trim();
+      if (descLine && descLine.startsWith('description:')) {
+        const description = descLine.replace('description:', '').trim().replace(/"/g, '');
+        timeline.push({ date, description });
+      }
+      i++; // Skip the description line
+    }
+  }
+
+  return timeline.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 function getHomeContent() {
@@ -42,32 +60,29 @@ function getLinks() {
 }
 
 export default function Home() {
-  const recentPosts = getBlogPosts();
+  const timeline = getTimeline();
   const homeContent = getHomeContent();
   const links = getLinks();
 
   return (
+
+    <footer className="mb-16">
+    <ul>
     <div>
       <p className="mb-8 leading-relaxed">
         {homeContent}
       </p>
 
       <div className="mb-8">
-        {recentPosts.map(post => (
-          <Link
-            key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
-            href={`/blog/${post.slug}`}
-          >
-            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-              <p className="text-neutral-600 w-[100px] tabular-nums">
-                {formatDate(post.date, false)}
-              </p>
-              <p className="text-neutral-900 tracking-tight">
-                {post.title}
-              </p>
-            </div>
-          </Link>
+        {timeline.map((item, index) => (
+          <div key={index} className="flex flex-col md:flex-row mb-4 gap-2">
+            <p className="text-neutral-600 tabular-nums md:w-[25%] flex-shrink-0">
+              {formatDate(item.date, false)}
+            </p>
+            <p className="text-neutral-900 tracking-tight md:w-[75%]">
+              {item.description}
+            </p>
+          </div>
         ))}
       </div>
 
@@ -77,10 +92,10 @@ export default function Home() {
             href={links.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-neutral-600 hover:text-neutral-900 transition-colors"
+            className="flex items-center text-neutral-600 hover:text-neutral-900 transition-colors"
           >
-            <span>↗</span>
-            <span>github</span>
+            <ArrowIcon />
+            <p className="ml-2">github</p>
           </a>
         )}
         {links.linkedin && (
@@ -88,13 +103,18 @@ export default function Home() {
             href={links.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-neutral-600 hover:text-neutral-900 transition-colors"
+            className="flex items-center text-neutral-600 hover:text-neutral-900 transition-colors"
           >
-            <span>↗</span>
-            <span>linkedin</span>
+            <ArrowIcon />
+            <p className="ml-2">linkedin</p>
           </a>
         )}
       </div>
     </div>
+    </ul>
+  <p className="mt-8 text-xs text-neutral-600 dark:text-neutral-300">
+    © {new Date().getFullYear()} GNU GENERAL PUBLIC LICENSE
+  </p>
+    </footer>
   );
 }
