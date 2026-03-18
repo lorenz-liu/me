@@ -85,7 +85,7 @@ export default function Home() {
         <ReactMarkdown
           rehypePlugins={[rehypeRaw]}
           components={{
-            ul: ({ children }) => <ul className="list-disc ml-6 space-y-2">{children}</ul>,
+            ul: ({ children }) => <ul className="list-disc ml-6 space-y-2 mt-2 mb-2">{children}</ul>,
             li: ({ children }) => <li className="leading-relaxed">{children}</li>,
             a: ({ href, children }) => (
               <a href={href} target="_blank" rel="noopener noreferrer">
