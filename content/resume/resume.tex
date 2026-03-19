@@ -1,0 +1,447 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\small{#1}} & {#2} \\
+      {#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\publication}[3]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{p{0.98\textwidth}}
+    \textbf{\small{#1}} \\
+    {#3} \\
+    \textit{#2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\education}[6]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small{#2}} \\
+      {#5} & {#6} \\
+      {#3} & \textit{ #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\research}[5]{
+    \item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\small{#1}} & {#2} \\
+      {#3} & \textit{#4} \\
+      Supervised by \textbf{\small{#5}}
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\researchWithCollab}[6]{
+    \item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\small{#1}} & {#2} \\
+      {#3} & \textit{#4} \\
+      Supervised by \textbf{\small{#5}} \& Collaborated with \textbf{\small{#6}}
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\extracurricular}[3]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} \\
+      {#2} & \textit{#3} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\extracurricularLongName}[4]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} \\
+      {#2} \\
+      {#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\coursework}[5]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\small{#1}} & Score: {#2} Rank: {#3}\% \\
+      {#4} & \textit{#5} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    {\Huge \scshape \textbf{Zhaoxun Liu}} \\ \vspace{5pt}
+    {\Large \textbf{Lorenz}} {\textbf{O}ften \textbf{R}epresents the \textbf{E}nglish \textbf{N}ame for \textbf{Z}haoxun} \\ \vspace{5pt}
+    \href{https://temertysimcentre.com/surgical-artificial-intelligence-research-academy-sara/}{University Health Network, Toronto, ON} \\ \vspace{2pt}
+    \small \href{https://www.linkedin.com/in/lorenz-liu/}{\raisebox{-0.1\height}\faLinkedin\ Zhaoxun (Lorenz) Liu} ~ \href{mailto:lorenz@null.net}{\raisebox{-0.2\height}\faEnvelope\  {lorenz@null.net}} ~
+    \href{https://lorenz.fun/}{\raisebox{-0.2\height}\faHome\ {lorenz.fun}}  ~
+    \href{https://github.com/lorenz-liu}{\raisebox{-0.2\height}\faGithub\ {lorenz-liu}}
+    \vspace{-8pt}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{EDUCATION}
+  \resumeSubHeadingListStart
+    \education
+      {University of Toronto}{St. George Campus, Toronto, ON}
+      {\href{https://mscac.utoronto.ca/}{Master of Science in Applied Computing (MScAC)}}{Sep. 2023 -- Jun. 2025}
+      {Department of Computer Science}{GPA: 4.0}
+    %   \vspace{0.6\baselineskip}
+    %   \begin{itemize}[itemsep=0.05\baselineskip, before=\footnotesize, after=\vspace{-\baselineskip}]
+    %     \begin{multicols}{2}
+    %       \item MAT1510H - Deep Learning: Theory \& Data Science
+    %       \item CSC2552H - Topics in Computational Social Science
+    %       \item CSC2524H - Topics in Interactive Computing
+    %       \item CSC2547H - Topics in Machine Learning: AI Alignment
+    %     \end{multicols}
+    %   \end{itemize}
+    % \vspace{0.5\baselineskip}
+    \education
+      {Beihang University}{Beijing, CN}
+      {Bachelor of Engineering in Computer Science and Technology}{Sep. 2019 -- Jun. 2023}
+      {School of Computer Science and Engineering}{GPA: 87/100 \textit{with an} Upper Division GPA: 91/100}
+  \resumeSubHeadingListEnd
+
+%------RELEVANT COURSEWORK-------
+% \section{RELEVANT COURSEWORK}
+%     %\resumeSubHeadingListStart
+%         \begin{multicols}{3}
+%             \begin{itemize}[itemsep=-5pt, parsep=3pt]
+%                 \item\small Human Computer Interaction
+%                 \item Design and Analysis of Algorithms
+%                 \item Object-Oriented Programming
+%                 \item Data Structure
+%                 \item Software Engineering
+%                 \item Database Systems
+%                 \item Computer Network
+%                 \item Compiler Technology
+%                 \item Computer Architecture
+%                 \item Operating Systems
+%                 \item Linear Algebra
+%                 \item Probability Theory
+%             \end{itemize}
+%         \end{multicols}
+%     %\resumeSubHeadingListEnd
+%     \vspace{-3pt}
+%
+
+ % \begin{itemize}[leftmargin=0.15in, label={}]
+ %    {\item{
+ %     \textbf{Professional: } \\
+ %     \vspace{-5pt}
+ %     \resumeItemListStart
+ %      \resumeItem{\textbf{\small{Programming: }}Python, C++, C\#, JavaScript, Java, SQL, Bash}
+ %      \resumeItem{\textbf{\small{Dev. Tools: }}PyTorch, Unity3D, React Native \& React, Firebase, Linux/Unix, NumPy, Matplotlib, Git}
+ %     \resumeItemListEnd
+ %     \textbf{Language: } \\
+ %     \vspace{-5pt}
+ %     \resumeItemListStart
+ %      \resumeItem{\textbf{\small{English: }}\textit{\textbf{Advanced}}}\textit{TOEFL: 110 · GRE: 324 · PTE: 78}
+ %      \resumeItem{\textbf{\small{Chinese (Mandarin): }}\textit{\textbf{Native}}}
+ %     \resumeItemListEnd
+ %    }}
+ % \end{itemize}
+
+% \vspace{-10pt}
+% \section{AREA}
+% \textbf{\small{AI Agent}:} I develop agentic AI solutions to enhance clinical decision-making and improve patient outcomes, focusing on integrating AI systems seamlessly into healthcare workflows.
+
+% \textbf{\small{Human-AI Interaction}:} I apply my expertise in HCI and AI to build interactive data systems, study their impact on users, and search for methods to control AI behaviors and align them with human values and goals.
+
+\section{PUBLICATIONS}
+    \resumeSubHeadingListStart
+        \publication{\href{https://arxiv.org/abs/2509.08756}{Using AI to Optimize Patient Transfer and Resource Utilization During Mass-Casualty Incidents: A Simulation Platform}}{arXiv Preprint, 2025}{Zhaoxun Liu*, Wagner H. Souza, Jay Han, Amin Madani}
+        \publication{\href{https://arxiv.org/abs/2509.12242}{Artificial Intelligence in Breast Cancer Care: Transforming Preoperative Planning and Patient Education with 3D Reconstruction}}{arXiv Preprint, 2025}{Mustafa Khanbhai, Giulia Di Nardo, Jun Ma, Vivienne Freitas, Caterina Masino, Ali Dolatabadi, Zhaoxun Liu*, Wey Leong, Wagner H. Souza, Amin Madani}
+        \publication{\href{https://doi.org/10.1080/10447318.2024.2358456}{CrossKeys: Text Entry for Virtual Reality Using a Single Controller via Wrist Rotation}}{International Journal of Human–Computer Interaction (IJHCI), 2024}{Zhaoxun Liu*, Xiaolong Liu, Lili Wang}
+        \publication{\href{https://lorenz.fun/files/hands-free-is-fine.pdf}{Hands-Free Is Fine: Gaze-Dominant Object Manipulation in Virtual Reality}}{Journal of Beihang University, 2023 (Undergraduate Thesis)}{Zhaoxun Liu*, Xiaolong Liu, Lili Wang}
+        \publication{\href{https://doi.org/10.1109/JIOT.2023.3257992}{Temporal Transformer Networks with Self-Supervision for Action Recognition}}{IEEE Internet of Things Journal (IoT), 2023}{Yongkang Zhang, Jun Li, Na Jiang, Guoming Wu, Han Zhang, Zhiping Shi, Zhaoxun Liu*, Zizhang Wu}
+    \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{INDUSTRIAL}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {\href{https://temertysimcentre.com/surgical-artificial-intelligence-research-academy-sara/}{University Health Network (UHN)}}{Since \textbf{Feb. 2025}}
+      {Machine Learning Specialist}{Toronto, ON}
+      \resumeItemListStart
+        \resumeItem{I lead the Machine Learning Research Team at the SARA Lab, UHN. We conduct research in foundational models, computer vision, graphics, and reinforcement learning.}
+        \resumeItem{\textit{MasTER} remains my main project. We scale it up to be an ecosystem for general disaster preparedness and training. Keywords: Agentic AI, RAG, LangGraph, Neuro-Symbolic Engine, React, AWS, PyTorch, Foundational Models, Deep Reinforcement Learning. }
+
+      \resumeItemListEnd
+    \resumeSubheading
+      {\href{https://temertysimcentre.com/surgical-artificial-intelligence-research-academy-sara/}{University Health Network (UHN)}}{\textbf{May. 2024 -- Dec. 2024}}
+      {Intern Machine Learning Researcher}{Toronto, ON}
+      \resumeItemListStart
+        \resumeItem{Introduced \textit{MasTER}, a data-intensive triage dashboard with a user-friendly human interface to enable fast patient dispatch in mass-casualty incidents by leveraging PPO-based deep reinforcement learning and large language models.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {\href{https://www.ubisoft.com/}{Ubisoft}}{\textbf{Sep. 2022 -- Mar. 2023}}
+      {Intern Gameplay Programmer}{Chengdu, CN}
+      \resumeItemListStart
+        \resumeItem{Researched reinforcement learning (DQN, DDPG) on non-player character actions, behaviours, and interactions. }
+        \resumeItem{\textit{Assassin's Creed Mirage} downloadable contents (DLCs), excelling in C\# and Unity3D and performance optimization. }
+        \resumeItem{Achieved notable improvements in DLC performance and functionality, streamlined project workflows with Perforce and Confluence, and successfully delivered high-quality content. }
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\vspace{-5pt}
+\section{ACADEMIC}
+    \resumeSubHeadingListStart
+      \research{\href{https://www.dgp.toronto.edu/}{Dynamic Graphics Project}}{Graduate Student}{Jan. 2024 -- Apr. 2024}{University of Toronto}{\href{https://www.tovigrossman.com/}{Prof. Tovi Grossman}}
+          \resumeItemListStart
+            \resumeItem{Proposed \textit{DocHub}, a LLM-based interactive system that identifies and visualizes crucial data and their interconnections within documents as node-link diagrams.}
+            \resumeItem{Offered an interactive interface allowing users to modify these visualizations for tailored insights and to pose detailed, context-specific queries for deeper understanding.}
+            \resumeItem{Featured a non-linear abstraction framework to adeptly handle and streamline the complexity of information presented.}
+          \resumeItemListEnd
+
+      \research{\href{https://csslab.cs.toronto.edu/}{Computational Social Science Lab}}{Graduate Student}{Sep. 2023 -- Dec. 2023}{University of Toronto}{\href{https://www.cs.toronto.edu/~ashton/}{Prof. Ashton Anderson}}
+          \resumeItemListStart
+            \resumeItem{Presented a pretrained language model-based framework to detect and reason about entities targeted by hateful memes.}
+            \resumeItem{Provided insight into why certain groups are more susceptible to becoming targets of hateful memes. }
+            \resumeItem{Proposed a specific preventive measure to curb the spread of hateful memes. }
+          \resumeItemListEnd
+
+      \researchWithCollab
+        {\href{http://vrlab.buaa.edu.cn/}{State Key Laboratory of Virtual Reality Technology and Systems}}
+        {Researcher (Undergraduate Thesis)}
+        {Feb. 2023 -- Jun. 2023}
+        {Beihang University}
+        {\href{http://liliwang.net/}{Prof. Lili Wang}}
+        {Ph.D. Xiaolong Liu}
+          \resumeItemListStart
+            \resumeItem{We proposed a hands-free object manipulation method based on gaze-dominant interaction, which significantly outperforms the current state-of-the-art gaze-based hands-free object manipulation method. }
+            \resumeItem{We designed a novel user study, facilitating a quantitative evaluation of the efficiency of the proposed method. }
+          \resumeItemListEnd
+
+      \researchWithCollab
+        {\href{https://www.cs.dartmouth.edu/~hci/}{XDiscovery Lab (Dartmouth HCI Lab)}}
+        {Intern Researcher}
+        {May. 2022 -- Sep. 2022}
+        {Dartmouth College}
+        {\href{https://www.cs.dartmouth.edu/~xingdong/}{Prof. Xing-Dong Yang}}
+        {\href{https://cs.dartmouth.edu/~zheer/index.html}{Ph.D. Zheer Xu}}
+          \resumeItemListStart
+            \resumeItem{Devised a novel text entry method that composes scattered keywords into a natural and clear sentence. }
+            \resumeItem{Designed and developed a keyword extractor using \href{https://huggingface.co/bert-base-uncased}{BERT} from \href{https://huggingface.co/}{Hugging Face}. }
+            \resumeItem{Retrained the model based on the prompt-based approach to give three different semantic candidate sentences. }
+            \resumeItem{Developed a web application to enable more people to participate in our user study. }
+          \resumeItemListEnd
+
+      \label{sec:crosskeys}
+      \research{\href{http://vrlab.buaa.edu.cn/}{State Key Laboratory of Virtual Reality Technology and Systems}}{Researcher}{Sep. 2021 -- Feb. 2022}{Beihang University}{\href{http://liliwang.net/}{Prof. Lili Wang}}
+          \resumeItemListStart
+            \resumeItem{Led the team to devise \textit{CrossKeys}, a novel and efficient text entry technique for virtual reality (VR) using a single controller via wrist rotation, which unprecedentedly employs the three-dimensional space a virtual environment can provide and outperforms the state-of-the-art method. }
+            \resumeItem{Implemented responsive components, auto-completing prediction algorithm, user interface design, ergonomics-mathematical deduction, and 3D modeling. }
+          \resumeItemListEnd
+      \researchWithCollab{\href{http://www.nlsde.buaa.edu.cn/}{State Key Laboratory of Software Development Environment}}{Intern Researcher}{Mar. 2021 -- Dec. 2021}{Beihang University}{\href{https://xlliu-beihang.github.io/}{Prof. Xianglong Liu}}{Ph.D. Jun Li}
+          \resumeItemListStart
+            \resumeItem{Developed Cross-Attention ReID, a state-of-the-art approach to realizing pedestrians' re-identification based on training with large-scale datasets generated by single-channeled IR cameras and three-channeled RGB cameras. }
+            \resumeItem{Surveyed literature and applied existing theories to code with high performance and robustness. }
+            \resumeItem{Conducted quantitative analysis and results assessment with datasets like SYSU-MM01 and RegDB. }
+          \resumeItemListEnd
+      \research{\href{https://www.bnrist.tsinghua.edu.cn/}{BNRist} and \href{https://www.thss.tsinghua.edu.cn/}{School of Software}}{Intern Researcher}{Oct. 2020 -- Jan. 2021}{Tsinghua University}{\href{http://xufeng.site/}{Prof. Feng Xu}}
+          \resumeItemListStart
+            \resumeItem{Refined a CVPR accepted project \href{https://arxiv.org/abs/2012.06087}{``Monocular Real-time Full Body Capture with Inter-part Correlations"}. }
+            \resumeItem{Implemented unsupervised training via differentiable renderers. }
+            \resumeItem{Conducted quantitative analysis and cross-datasets tests with datasets like Basel Face Model and 3DMM Face Model. }
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+% \vspace{-7pt}
+% \section{SERVICES}
+%     \resumeSubHeadingListStart
+%         \education{Teaching Assistant}{Sep. 2024 -- Dec. 2024}{``CSC207: Software Design"}{}{Department of Computer Science, University of Toronto}{}
+%         \education{Teaching Assistant}{Jan. 2024 -- May. 2024}{``CSC404: Video Game Design"}{}{Department of Computer Science, University of Toronto}{}
+%         \education{Teaching Assistant}{Jan. 2024 -- May. 2024}{``CSC165: Mathematical Expression and Reasoning for Computer Science"}{}{Department of Computer Science, University of Toronto}{}
+%         \education{Teaching Assistant}{Feb. 2021 -- Jul. 2021}{``Data Structure"}{}{School of Computer Science and Engineering, Beihang University}{}
+%     \resumeSubHeadingListEnd
+% \vspace{-8pt}
+% \section{SELECTED COURSEWORK}
+%     \resumeSubHeadingListStart
+%         \coursework{Software Engineering}{98/100}{3}{School of Computer Science and Engineering}{Apr. 2022 -- Jun. 2022}
+%           \resumeItemListStart
+%             \resumeItem{Led a team of 7 to design and develop a to-do checklist app, ``Okidoki," from sketch, which supports hierarchical and tree-like management of events and plans. }
+%             \resumeItem{Defined code architecture and style, regulated code version controlling standards and team managing mechanics. }
+%             \resumeItem{Designed and implemented core functions and UI using React Native with Yarn to manage packages. }
+%             \resumeItem{Controlled code version with GitLab and managed the team tasks with JIRA and Discord. }
+%             \resumeItem{Supervised the development life cycle to comply with Agile developing principles. }
+%             \resumeItem{Composed technical documentations. }
+%           \resumeItemListEnd
+%         % \coursework{Human Computer Interaction}{4.0/4.0}{1}{School of Computer Science and Engineering}{Sep. 2021 -- Dec. 2021}
+%         %   \resumeItemListStart
+%         %     \resumeItem{Proposed an innovative and efficient text entry method for virtual reality, and eventually expanded this coursework into a research paper that is acknowledged by top international conferences. For details, please refer to \hyperref[sec:crosskeys]{the piece of my academic research with the State Key Laboratory of Virtual Reality Technology and Systems}. }
+%         %   \resumeItemListEnd
+%         % \coursework{Data Structure}{92/100}{5}{School of Computer Science and Engineering}{May. 2020 -- Jun. 2020}
+%         %   \resumeItemListStart
+%         %     \resumeItem{Developed a tool to analyze the similarity between two text materials based on a statistical comparison between writing styles and preferences in writers' word choices.}
+%         %     \resumeItem{Received the ``Top Performance Bonus", whose condition is to rank top 5\% in the final performance contest. }
+%         %   \resumeItemListEnd
+%     \resumeSubHeadingListEnd
+
+% \vspace{-8pt}
+% \section{AWARDS \& CERTIFICATES}
+% \addtolength{\tabcolsep}{10pt}
+% \small\begin{tabular}{rll}
+% 2024         & Scholarship                                & The Mitacs Accelerate Fellowship \\
+% 2023         & Award                                & ``Outstanding Undergraduate Thesis" of Beihang University \\
+% 2021         & Scholarship                          & ``Excellent Student Cadres" of Beihang University \\
+% 2020         & The First Prize  & The 9th National University Students Arts Performance Competition \\
+% 2019	     & Silver Medal  & BUAA Basketball Association\\
+\end{tabular}
+\addtolength{\tabcolsep}{-10pt}
+
+% \section{SELECTED COURSES}
+%   % \vspace{0.6\baselineskip}
+%       \begin{itemize}[itemsep=0.05\baselineskip, before=\footnotesize, after=\vspace{-\baselineskip}]
+%         \begin{multicols}{2}
+%           \item MAT1510H - Deep Learning: Theory \& Data Science
+%           \item CSC2552H - Topics in Computational Social Science
+%           \item CSC2524H - Topics in Interactive Computing
+%           \item CSC2547H - Topics in Machine Learning: AI Alignment
+%         \end{multicols}
+%       \end{itemize}
+%     \vspace{0.5\baselineskip}
+
+% %-----------INVOLVEMENT---------------
+% \vspace{2pt}
+% \section{EXTRACURRICULAR}
+%     \resumeSubHeadingListStart
+%         \extracurricular{Chief Cellist}{BUAA Symphony Orchestra}{Sep.2019 -- Jul.2023}
+%             % \resumeItemListStart
+%             %     \resumeItem{Won ``The First Prize" in "The 9th National University Students Arts Performance Competition" as the team leader. }
+%             %     \resumeItem{Helping relatively unskilled members to improve their playing, formulating and deciding how we play, and maintaining a reliable relationship between external professional conductors and our orchestra members. }
+%             %     \resumeItem{Solving unexpected problems reported by students when using online coding platform. }
+%             % \resumeItemListEnd
+%             \vspace{6pt}
+%         \extracurricular{Point Guard}{BUAA Basketball Team}{Sep.2019 -- Jul.2023}
+%             % \resumeItemListStart
+%             %     \resumeItem{Won the Silver Medal of BUAA Basketball Association in 2019. }
+%             % \resumeItemListEnd
+%     \resumeSubHeadingListEnd
+
+%-----------PROGRAMMING SKILLS-----------
+
+\section{SKILLSET}
+\resumeSubHeadingListStart
+\item {\textbf{\small{Programming Languages: }}Python, C++, C\#, JavaScript \& TypeScript} \\ {\textbf{\small{Frameworks \& Tools: }}PyTorch, React \& React Native, Unity3D}
+\resumeSubHeadingListEnd
+
+\end{document}
