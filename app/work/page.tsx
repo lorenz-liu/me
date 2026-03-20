@@ -40,7 +40,7 @@ export default function Work() {
           href={`/work/${project.slug}`}
         >
           <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <p className="text-neutral-600 w-[100px] tabular-nums">
+            <p className="text-neutral-600 w-25 tabular-nums">
               {formatDate(project.date, false)}
             </p>
             <p className="text-neutral-900 tracking-tight">

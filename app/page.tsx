@@ -90,10 +90,10 @@ export default function Home() {
       <div className="mb-8">
         {timeline.map((item, index) => (
           <div key={index} className="flex flex-col md:flex-row mb-4 gap-2">
-            <p className="text-neutral-600 tabular-nums md:w-[25%] flex-shrink-0 text-sm">
+            <p className="text-neutral-600 tabular-nums w-30 shrink-0 text-sm">
               {formatDate(item.date, false)}
             </p>
-            <div className="text-neutral-900 tracking-tight md:w-[75%] text-sm prose prose-neutral prose-sm max-w-none">
+            <div className="text-neutral-900 tracking-tight text-sm prose prose-neutral prose-sm max-w-none">
               <ReactMarkdown
                 rehypePlugins={[rehypeRaw]}
                 components={{
