@@ -19,40 +19,54 @@ type BlogListProps = {
 
 export default function BlogList({ posts, tags }: BlogListProps) {
   const [selectedTag, setSelectedTag] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const filteredPosts = selectedTag === 'all'
-    ? posts
-    : posts.filter(post => post.tags.includes(selectedTag));
+  const filteredPosts = posts.filter(post => {
+    const matchesTag = selectedTag === 'all' || post.tags.includes(selectedTag);
+    const matchesSearch = searchQuery === '' ||
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesTag && matchesSearch;
+  });
 
   return (
     <div>
-      {tags.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-6">
-          <button
-            onClick={() => setSelectedTag('all')}
-            className={`px-3 py-1 rounded-full text-sm transition-colors ${
-              selectedTag === 'all'
-                ? 'bg-neutral-900 text-white'
-                : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
-            }`}
-          >
-            All
-          </button>
-          {tags.map(tag => (
+      <div className="mb-6">
+        <input
+          type="text"
+          placeholder="Search blogs..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full px-4 py-2 rounded border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900 mb-3"
+        />
+        {tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
             <button
-              key={tag}
-              onClick={() => setSelectedTag(tag)}
+              onClick={() => setSelectedTag('all')}
               className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                selectedTag === tag
+                selectedTag === 'all'
                   ? 'bg-neutral-900 text-white'
                   : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
               }`}
             >
-              #{tag}
+              All
             </button>
-          ))}
-        </div>
-      )}
+            {tags.map(tag => (
+              <button
+                key={tag}
+                onClick={() => setSelectedTag(tag)}
+                className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                  selectedTag === tag
+                    ? 'bg-neutral-900 text-white'
+                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                }`}
+              >
+                #{tag}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
       {filteredPosts.map(post => (
         <Link
           key={post.slug}
