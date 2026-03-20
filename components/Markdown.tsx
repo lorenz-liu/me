@@ -97,7 +97,7 @@ const components: Components = {
     return <ol className="list-decimal ml-6 space-y-1 my-2">{children}</ol>;
   },
   li({ children }) {
-    return <li className="leading-relaxed">{children}</li>;
+    return <li style={{ lineHeight: '1.8' }}>{children}</li>;
   },
 
   // Headings
@@ -116,7 +116,7 @@ const components: Components = {
 
   // Paragraphs with increased spacing
   p({ children }) {
-    return <p className="my-3 leading-relaxed">{children}</p>;
+    return <p className="my-3" style={{ lineHeight: '1.8' }}>{children}</p>;
   },
 };
 
