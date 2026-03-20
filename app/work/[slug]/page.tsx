@@ -43,15 +43,15 @@ export default async function WorkProject({ params }: { params: Promise<{ slug: 
           </div>
         )}
         {(data.pdf || data.link) && (
-          <div className="flex gap-3 mb-2 text-gray-600">
+          <div className="flex gap-3 mb-2">
             {data.pdf && (
-              <a href={data.pdf} target="_blank" rel="noopener noreferrer" className="hover:text-black underline flex items-center gap-1.5">
+              <a href={data.pdf} target="_blank" rel="noopener noreferrer" className="underline flex items-center gap-1.5">
                 <ArrowIcon />
                 Read the Paper
               </a>
             )}
             {data.link && (
-              <a href={data.link} target="_blank" rel="noopener noreferrer" className="hover:text-black underline flex items-center gap-1.5">
+              <a href={data.link} target="_blank" rel="noopener noreferrer" className="underline flex items-center gap-1.5">
                 <ArrowIcon />
                 External Link
               </a>
