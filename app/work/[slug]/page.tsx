@@ -1,9 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import Link from 'next/link';
+import Markdown from '@/components/Markdown';
 
 export async function generateStaticParams() {
   const workDir = path.join(process.cwd(), 'content/work');
@@ -40,9 +39,7 @@ export default async function WorkProject({ params }: { params: Promise<{ slug: 
           </>
         )}
       </div>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-        {content}
-      </ReactMarkdown>
+      <Markdown content={content} />
     </article>
   );
 }

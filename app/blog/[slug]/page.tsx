@@ -1,9 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import Link from 'next/link';
+import Markdown from '@/components/Markdown';
 
 export async function generateStaticParams() {
   const blogDir = path.join(process.cwd(), 'content/blog');
@@ -29,9 +28,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       </Link>
       <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
       <time className="text-sm text-gray-500 block mb-8">{data.date}</time>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-        {content}
-      </ReactMarkdown>
+      <Markdown content={content} />
     </article>
   );
 }

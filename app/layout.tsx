@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import 'katex/dist/katex.min.css';
+import 'highlight.js/styles/github.css';
 import Link from "next/link";
 import Image from "next/image";
 

@@ -1,8 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
+import Markdown from '@/components/Markdown';
 import { formatDate } from '@/lib/utils';
 
 function ArrowIcon() {
@@ -71,20 +70,7 @@ export default function Home() {
     <ul>
     <div>
       <div className="mb-8 leading-relaxed prose prose-neutral max-w-none">
-        <ReactMarkdown
-          rehypePlugins={[rehypeRaw]}
-          components={{
-            ul: ({ children }) => <ul className="list-disc ml-6 space-y-2 mt-2 mb-2">{children}</ul>,
-            li: ({ children }) => <li className="leading-relaxed">{children}</li>,
-            a: ({ href, children }) => (
-              <a href={href} target="_blank" rel="noopener noreferrer">
-                {children}
-              </a>
-            ),
-          }}
-        >
-          {homeContent}
-        </ReactMarkdown>
+        <Markdown content={homeContent} />
       </div>
 
       <div className="mb-8">
@@ -94,17 +80,13 @@ export default function Home() {
               {formatDate(item.date, false)}
             </p>
             <div className="text-neutral-900 tracking-tight text-sm prose prose-neutral prose-sm max-w-none">
-              <ReactMarkdown
-                rehypePlugins={[rehypeRaw]}
+              <Markdown
+                content={item.description}
+                inline
                 components={{
-                  p: ({ children }) => <span>{children}</span>,
                   strong: ({ children }) => <span className="italic">{children}</span>,
-                  em: ({ children }) => <em className="italic">{children}</em>,
-                  u: ({ children }) => <span className="underline">{children}</span>,
                 }}
-              >
-                {item.description}
-              </ReactMarkdown>
+              />
             </div>
           </div>
         ))}

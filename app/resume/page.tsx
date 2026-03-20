@@ -1,8 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import Markdown from '@/components/Markdown';
 
 function getResumeContent() {
   const filePath = path.join(process.cwd(), 'content/pages/resume.md');
@@ -16,9 +15,7 @@ export default function Resume() {
 
   return (
     <article className="prose prose-neutral max-w-none">
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-        {resumeContent}
-      </ReactMarkdown>
+      <Markdown content={resumeContent} />
     </article>
   );
 }
