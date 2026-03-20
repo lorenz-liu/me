@@ -27,6 +27,18 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         ← Back to blog
       </Link>
       <h1 className="text-3xl font-bold mb-2">{data.title}</h1>
+      {data.tags && data.tags.length > 0 && (
+        <div className="flex flex-wrap gap-1 mb-2">
+          {data.tags.map((tag: string) => (
+            <span
+              key={tag}
+              className="px-2 py-0.5 text-xs rounded bg-neutral-100 text-neutral-600"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
       <time className="text-sm text-gray-500 block mb-8">{data.date}</time>
       <Markdown content={content} />
     </article>
