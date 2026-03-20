@@ -83,7 +83,7 @@ export default function Home() {
 
       <div className="mb-8">
         {timeline.map((item, index) => (
-          <div key={index} className="flex flex-col md:flex-row mb-4 gap-2">
+          <div key={index} className="flex flex-col md:flex-row mb-2 gap-2">
             <p className="text-neutral-600 tabular-nums w-30 shrink-0 text-sm">
               {formatDate(item.date, false)}
             </p>
