@@ -40,12 +40,15 @@ export default function Work() {
           href={`/work/${project.slug}`}
         >
           <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <p className="text-neutral-600 w-25 tabular-nums">
+            <p className="text-neutral-600 w-25 shrink-0 tabular-nums">
               {formatDate(project.date, false)}
             </p>
-            <p className="text-neutral-900 tracking-tight">
-              {project.title}
-            </p>
+            <div className="flex flex-col">
+              <p className="text-neutral-900 tracking-tight">{project.title}</p>
+              {project.tech && (
+                <p className="text-neutral-600 text-sm">{project.tech}</p>
+              )}
+            </div>
           </div>
         </Link>
       ))}

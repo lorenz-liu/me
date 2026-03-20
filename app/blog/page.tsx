@@ -39,12 +39,15 @@ export default function Blog() {
           href={`/blog/${post.slug}`}
         >
           <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <p className="text-neutral-600 w-25 tabular-nums">
+            <p className="text-neutral-600 w-25 shrink-0 tabular-nums">
               {formatDate(post.date, false)}
             </p>
-            <p className="text-neutral-900 tracking-tight">
-              {post.title}
-            </p>
+            <div className="flex flex-col">
+              <p className="text-neutral-900 tracking-tight">{post.title}</p>
+              {post.excerpt && (
+                <p className="text-neutral-600 text-sm">{post.excerpt}</p>
+              )}
+            </div>
           </div>
         </Link>
       ))}
