@@ -6,8 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Personal Website",
-  description: "My personal website",
+  title: "Zhaoxun \"Lorenz\" Liu",
+  description: "Zhaoxun \"Lorenz\" Liu",
 };
 
 export default function RootLayout({
