@@ -113,6 +113,11 @@ const components: Components = {
   h4({ children }) {
     return <h4 className="text-base font-semibold mt-4 mb-1">{children}</h4>;
   },
+
+  // Paragraphs with increased spacing
+  p({ children }) {
+    return <p className="my-3 leading-relaxed">{children}</p>;
+  },
 };
 
 const remarkPlugins = [remarkGfm, remarkMath];

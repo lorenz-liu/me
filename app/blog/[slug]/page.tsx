@@ -26,7 +26,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <Link href="/blog" className="text-sm text-gray-600 hover:text-black no-underline mb-4 inline-block">
         ← Back to blog
       </Link>
-      <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
+      <h1 className="text-3xl font-bold mb-2">{data.title}</h1>
       <time className="text-sm text-gray-500 block mb-8">{data.date}</time>
       <Markdown content={content} />
     </article>
