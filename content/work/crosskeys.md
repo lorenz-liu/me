@@ -1,7 +1,7 @@
 ---
 title: "CrossKeys: Text Entry for Virtual Reality Using a Single Controller via Wrist Rotation"
-date: "2024-05-16"
-tech: "Unity3D, C#, Virtual Reality"
+date: "2022-02-04"
+tech: "Unity3D, C#, Virtual Reality (VR), Human-Computer Interaction (HCI), Spatial Interaction, User Study"
 link: "https://www.tandfonline.com/doi/full/10.1080/10447318.2024.2358456"
 pdf: "/pdf/crosskeys.pdf"
 ---
