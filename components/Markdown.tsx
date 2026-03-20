@@ -99,6 +99,20 @@ const components: Components = {
   li({ children }) {
     return <li className="leading-relaxed">{children}</li>;
   },
+
+  // Headings
+  h1({ children }) {
+    return <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>;
+  },
+  h2({ children }) {
+    return <h2 className="text-2xl font-semibold mt-6 mb-3">{children}</h2>;
+  },
+  h3({ children }) {
+    return <h3 className="text-xl font-semibold mt-5 mb-2">{children}</h3>;
+  },
+  h4({ children }) {
+    return <h4 className="text-base font-semibold mt-4 mb-1">{children}</h4>;
+  },
 };
 
 const remarkPlugins = [remarkGfm, remarkMath];
