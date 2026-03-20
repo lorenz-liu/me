@@ -2,7 +2,7 @@
 title: "为什么GPT采用纯Decoder结构？"
 date: "2026-03-19"
 excerpt: "为什么只需要保留Decoder？如果加上Encoder会如何？逆向诅咒？"
-tags: ["llm", "ai"]
+tags: ["llm"]
 ---
 
 可以从以下几个维度来理解为什么只需保留Decoder，以及加上Encoder会有什么不同：
