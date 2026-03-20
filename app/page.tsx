@@ -70,7 +70,15 @@ export default function Home() {
     <ul>
     <div>
       <div className="mb-8 leading-relaxed prose prose-neutral max-w-none">
-        <Markdown content={homeContent} />
+        <Markdown
+          content={homeContent}
+          bespoke={{
+            p: { marginTop: '0.5rem', marginBottom: '0.5rem', lineHeight: '1.6' },
+            ul: 'list-disc ml-6 space-y-0.5 my-1',
+            ol: 'list-decimal ml-6 space-y-0.5 my-1',
+            li: { lineHeight: '1.6' },
+          }}
+        />
       </div>
 
       <div className="mb-8">

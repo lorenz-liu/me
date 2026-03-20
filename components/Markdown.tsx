@@ -123,17 +123,34 @@ const components: Components = {
 const remarkPlugins = [remarkGfm, remarkMath];
 const rehypePlugins = [rehypeRaw, rehypeKatex, rehypeHighlight];
 
+type BespokeStyles = {
+  p?: React.CSSProperties;
+  ul?: string;
+  ol?: string;
+  li?: React.CSSProperties;
+};
+
 export default function Markdown({
   content,
   inline = false,
   components: overrides,
+  bespoke,
 }: {
   content: string;
   inline?: boolean;
   components?: Components;
+  bespoke?: BespokeStyles;
 }) {
+  const bespokeComponents: Components = bespoke ? {
+    p: ({ children }) => <p className={bespoke.p ? '' : 'my-3'} style={{ lineHeight: '1.8', ...bespoke.p }}>{children}</p>,
+    ul: ({ children }) => <ul className={bespoke.ul || 'list-disc ml-6 space-y-1 my-2'}>{children}</ul>,
+    ol: ({ children }) => <ol className={bespoke.ol || 'list-decimal ml-6 space-y-1 my-2'}>{children}</ol>,
+    li: ({ children }) => <li style={{ lineHeight: '1.8', ...bespoke.li }}>{children}</li>,
+  } : {};
+
   const merged: Components = {
     ...components,
+    ...bespokeComponents,
     ...(inline ? { p: ({ children }) => <span>{children}</span> } : {}),
     ...overrides,
   };
