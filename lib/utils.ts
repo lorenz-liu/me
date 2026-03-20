@@ -19,10 +19,10 @@ export function formatDate(date: string, includeRelative = false) {
       formattedDate = 'Today';
     }
   } else {
-    const month = targetDate.toLocaleDateString('en-US', { month: 'short' });
-    const day = targetDate.getDate();
-    const year = targetDate.getFullYear();
-    formattedDate = `${month} ${day}, ${year}`;
+    const [year, month, day] = date.split('-');
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const monthName = monthNames[parseInt(month) - 1];
+    formattedDate = `${monthName} ${parseInt(day)}, ${year}`;
   }
 
   return formattedDate;
