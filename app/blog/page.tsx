@@ -38,12 +38,16 @@ function getBlogPosts(): Post[] {
   return posts;
 }
 
-function getAllTags(posts: Post[]): string[] {
-  const tagSet = new Set<string>();
+function getAllTags(posts: Post[]): Array<{ tag: string; count: number }> {
+  const tagCount = new Map<string, number>();
   posts.forEach(post => {
-    post.tags.forEach(tag => tagSet.add(tag));
+    post.tags.forEach(tag => {
+      tagCount.set(tag, (tagCount.get(tag) || 0) + 1);
+    });
   });
-  return Array.from(tagSet).sort();
+  return Array.from(tagCount.entries())
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
 }
 
 export default function Blog() {

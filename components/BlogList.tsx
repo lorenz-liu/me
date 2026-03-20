@@ -14,7 +14,7 @@ type Post = {
 
 type BlogListProps = {
   posts: Post[];
-  tags: string[];
+  tags: Array<{ tag: string; count: number }>;
 };
 
 export default function BlogList({ posts, tags }: BlogListProps) {
@@ -51,7 +51,7 @@ export default function BlogList({ posts, tags }: BlogListProps) {
             >
               All
             </button>
-            {tags.map(tag => (
+            {tags.map(({ tag, count }) => (
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
@@ -61,7 +61,7 @@ export default function BlogList({ posts, tags }: BlogListProps) {
                     : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
                 }`}
               >
-                #{tag}
+                #{tag} <span style={{ color: '#aaaaaa' }}>{count}</span>
               </button>
             ))}
           </div>
