@@ -1,21 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import Markdown from '@/components/Markdown';
-
-function getResumeContent() {
-  const filePath = path.join(process.cwd(), 'content/pages/resume.md');
-  const fileContent = fs.readFileSync(filePath, 'utf8');
-  const { content } = matter(fileContent);
-  return content;
-}
-
 export default function Resume() {
-  const resumeContent = getResumeContent();
-
   return (
-    <article className="prose prose-neutral max-w-none">
-      <Markdown content={resumeContent} />
-    </article>
+    <div className="w-full" style={{ height: 'calc(100vh - 200px)' }}>
+      <iframe
+        src="/pdf/zhaoxun-lorenz-liu.pdf"
+        className="w-full h-full border-0"
+        title="Resume"
+      />
+    </div>
   );
 }
