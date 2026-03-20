@@ -100,7 +100,7 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="mt-12 flex gap-4">
+      <div className="mt-10 flex gap-4">
         {links.github && (
           <a
             href={links.github}
