@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { formatDate } from '@/lib/utils';
+import {formatDate} from '@/lib/utils';
 import BlogList from '@/components/BlogList';
 
 type Post = {
@@ -17,12 +17,12 @@ function getBlogPosts(): Post[] {
   const blogDir = path.join(process.cwd(), 'content/blog');
   const files = fs.readdirSync(blogDir);
 
-  const posts = files
+  return files
     .filter(file => file.endsWith('.md'))
     .map(file => {
       const filePath = path.join(blogDir, file);
       const fileContent = fs.readFileSync(filePath, 'utf8');
-      const { data } = matter(fileContent);
+      const {data} = matter(fileContent);
 
       return {
         slug: file.replace('.md', ''),
@@ -34,8 +34,6 @@ function getBlogPosts(): Post[] {
       };
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-  return posts;
 }
 
 function getAllTags(posts: Post[]): Array<{ tag: string; count: number }> {

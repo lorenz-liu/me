@@ -5,7 +5,7 @@ import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import rehypeHighlight from 'rehype-highlight';
 import type { Components } from 'react-markdown';
-import type { ReactNode } from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 
 const CALLOUT_TYPES: Record<string, { label: string; classes: string; icon: string }> = {
   NOTE:      { label: 'Note',      icon: 'ℹ',  classes: 'border-blue-400 bg-blue-50 text-blue-900' },
@@ -124,10 +124,10 @@ const remarkPlugins = [remarkGfm, remarkMath];
 const rehypePlugins = [rehypeRaw, rehypeKatex, rehypeHighlight];
 
 type BespokeStyles = {
-  p?: React.CSSProperties;
+  p?: CSSProperties;
   ul?: string;
   ol?: string;
-  li?: React.CSSProperties;
+  li?: CSSProperties;
 };
 
 export default function Markdown({
