@@ -12,6 +12,7 @@ type Project = {
   tech: string;
   techArray: string[];
   link: string;
+  pdf: string;
 };
 
 function getWorkProjects(): Project[] {
@@ -36,6 +37,7 @@ function getWorkProjects(): Project[] {
         tech: techString,
         techArray,
         link: data.link || '',
+        pdf: data.pdf || '',
       };
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

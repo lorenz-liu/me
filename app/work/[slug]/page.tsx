@@ -30,11 +30,19 @@ export default async function WorkProject({ params }: { params: Promise<{ slug: 
       <div className="text-sm text-gray-500 mb-8">
         <span>{data.date}</span>
         {data.tech && <span> • {data.tech}</span>}
+        {data.pdf && (
+          <>
+            {' • '}
+            <a href={data.pdf} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-black">
+              Read the Paper
+            </a>
+          </>
+        )}
         {data.link && (
           <>
             {' • '}
             <a href={data.link} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-black">
-              View Project →
+              External Link
             </a>
           </>
         )}

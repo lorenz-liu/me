@@ -11,6 +11,7 @@ type Project = {
   tech: string;
   techArray: string[];
   link: string;
+  pdf: string;
 };
 
 type WorkListProps = {
@@ -69,32 +70,60 @@ export default function WorkList({ projects, techs }: WorkListProps) {
         )}
       </div>
       {filteredProjects.map(project => (
-        <Link
-          key={project.slug}
-          className="flex flex-col space-y-1 mb-4"
-          href={`/work/${project.slug}`}
-        >
-          <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <p className="text-neutral-600 w-25 shrink-0 tabular-nums">
-              {project.formattedDate}
-            </p>
-            <div className="flex flex-col">
-              <p className="text-neutral-900 tracking-tight">{project.title}</p>
-              {project.techArray.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {project.techArray.map(tech => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 text-xs rounded bg-neutral-100 text-neutral-600"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )}
+        <div key={project.slug} className="flex flex-col space-y-1 mb-4">
+          <Link
+            className="flex flex-col space-y-1"
+            href={`/work/${project.slug}`}
+          >
+            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
+              <p className="text-neutral-600 w-25 shrink-0 tabular-nums">
+                {project.formattedDate}
+              </p>
+              <div className="flex flex-col">
+                <p className="text-neutral-900 tracking-tight">{project.title}</p>
+                {project.techArray.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {project.techArray.map(tech => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 text-xs rounded bg-neutral-100 text-neutral-600"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+          {(project.pdf || project.link) && (
+            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
+              <div className="w-25 shrink-0"></div>
+              <div className="flex gap-3">
+                {project.pdf && (
+                  <a
+                    href={project.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-neutral-600 hover:text-neutral-900 text-sm underline"
+                  >
+                    Read the Paper
+                  </a>
+                )}
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-neutral-600 hover:text-neutral-900 text-sm underline"
+                  >
+                    External Link
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
       ))}
     </div>
   );
