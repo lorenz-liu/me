@@ -100,7 +100,7 @@ export default function Blog({
                       key={tag}
                       className="px-2 py-0.5 text-xs rounded bg-neutral-100 text-neutral-600"
                     >
-                      {tag}
+                      #{tag}
                     </span>
                   ))}
                 </div>
