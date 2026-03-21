@@ -10,7 +10,7 @@ export default function MobileNav() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden flex flex-col gap-1.5 p-2 z-[60] relative"
+        className="md:hidden flex flex-col gap-1.5 p-2 z-[60] relative -ml-2"
         aria-label="Toggle menu"
       >
         <span className={`block w-6 h-0.5 bg-black transition-transform ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
