@@ -4,6 +4,7 @@ import 'katex/dist/katex.min.css';
 import 'highlight.js/styles/github.css';
 import Link from "next/link";
 import Image from "next/image";
+import MobileNav from "@/components/MobileNav";
 
 export const metadata: Metadata = {
   title: "Zhaoxun \"Lorenz\" Liu",
@@ -19,8 +20,9 @@ export default function RootLayout({
     <html lang="en" className="antialiased">
       <body className="min-h-screen bg-white text-black">
         <div className="max-w-3xl mx-auto px-6 py-12">
-          <nav className="mb-8 border-b pr-3 border-gray-200 flex items-end-safe justify-between">
-            <div className="flex mb-2 gap-6 text-2xl font-hepta-slab font-extralight">
+          <nav className="mb-8 border-b pr-3 border-gray-200 flex items-end-safe justify-between relative">
+            <MobileNav />
+            <div className="hidden md:flex mb-2 gap-6 text-2xl font-hepta-slab font-extralight">
               <Link href="/" className="hover:text-gray-600 transition-colors">
                 home
               </Link>
@@ -40,6 +42,7 @@ export default function RootLayout({
               width={80}
               height={80}
               priority
+              className="ml-auto"
             />
           </nav>
           <main>{children}</main>
