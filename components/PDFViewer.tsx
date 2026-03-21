@@ -54,7 +54,7 @@ export default function PDFViewer({ file }: PDFViewerProps) {
   };
 
   return (
-    <div className="relative h-full overflow-auto bg-gray-100 rounded-xl">
+    <div className="hide-scrollbar relative h-full overflow-auto bg-gray-100 rounded-xl">
       <div
         className="flex items-center-safe justify-center min-h-full py-2.5"
         onClick={wakeToolbar}
