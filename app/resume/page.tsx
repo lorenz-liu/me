@@ -1,4 +1,11 @@
-import PDFViewer from '@/components/PDFViewer';
+'use client';
+
+import dynamic from 'next/dynamic';
+
+const PDFViewer = dynamic(() => import('@/components/PDFViewer'), {
+  ssr: false,
+  loading: () => <div className="flex items-center justify-center h-full">Loading PDF...</div>
+});
 
 export default function Resume() {
   return (
