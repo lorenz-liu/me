@@ -42,7 +42,7 @@ export default function PDFViewer({ file }: PDFViewerProps) {
         </Document>
       </div>
 
-      <div className="fixed bottom-15 left-1/2 transform -translate-x-1/2 flex items-center gap-2 px-4 py-2 bg-gray-900/50 rounded-full shadow-lg z-10">
+      <div className="fixed bottom-18 left-1/2 transform -translate-x-1/2 flex items-center gap-2 px-2 py-2 bg-gray-900/50 rounded-full shadow-lg z-10">
         {numPages > 1 && (
           <>
             <button
