@@ -18,6 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="antialiased">
+      <head>
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="f295dc0e-3bc7-4610-b93d-fef950716c98"
+        />
+      </head>
       <body className="min-h-screen bg-white text-black">
         <div className="max-w-3xl mx-auto px-6 py-12">
           <nav className="mb-8 border-b pr-3 border-gray-200 flex items-end-safe justify-between relative">
