@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -12,6 +12,33 @@ interface PDFViewerProps {
 export default function PDFViewer({ file }: PDFViewerProps) {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
+  const [isToolbarVisible, setIsToolbarVisible] = useState(true);
+  const hideToolbarTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const resetToolbarHideTimer = useCallback(() => {
+    if (hideToolbarTimeoutRef.current) {
+      clearTimeout(hideToolbarTimeoutRef.current);
+    }
+
+    hideToolbarTimeoutRef.current = setTimeout(() => {
+      setIsToolbarVisible(false);
+    }, 2000);
+  }, []);
+
+  const wakeToolbar = useCallback(() => {
+    setIsToolbarVisible(true);
+    resetToolbarHideTimer();
+  }, [resetToolbarHideTimer]);
+
+  useEffect(() => {
+    resetToolbarHideTimer();
+
+    return () => {
+      if (hideToolbarTimeoutRef.current) {
+        clearTimeout(hideToolbarTimeoutRef.current);
+      }
+    };
+  }, [resetToolbarHideTimer]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
@@ -28,7 +55,10 @@ export default function PDFViewer({ file }: PDFViewerProps) {
 
   return (
     <div className="relative h-full overflow-auto bg-gray-100 rounded-xl">
-      <div className="flex items-center-safe justify-center min-h-full py-2.5">
+      <div
+        className="flex items-center-safe justify-center min-h-full py-2.5"
+        onClick={wakeToolbar}
+      >
         <Document
           file={file}
           onLoadSuccess={onDocumentLoadSuccess}
@@ -42,11 +72,17 @@ export default function PDFViewer({ file }: PDFViewerProps) {
         </Document>
       </div>
 
-      <div className="fixed bottom-18 left-1/2 transform -translate-x-1/2 flex items-center gap-2 px-2 py-2 bg-gray-900/50 rounded-full shadow-lg z-10">
+      <div
+        className={`fixed bottom-18 left-1/2 transform -translate-x-1/2 flex items-center gap-2 px-2 py-2 bg-gray-900/50 rounded-full shadow-lg z-10 transition-opacity duration-500 ${isToolbarVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={resetToolbarHideTimer}
+      >
         {numPages > 1 && (
           <>
             <button
-              onClick={() => setPageNumber(page => Math.max(1, page - 1))}
+              onClick={() => {
+                setPageNumber(page => Math.max(1, page - 1));
+                resetToolbarHideTimer();
+              }}
               disabled={pageNumber <= 1}
               className="p-2 hover:bg-white/10 text-white rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               aria-label="Previous page"
@@ -59,7 +95,10 @@ export default function PDFViewer({ file }: PDFViewerProps) {
               {pageNumber}/{numPages}
             </span>
             <button
-              onClick={() => setPageNumber(page => Math.min(numPages, page + 1))}
+              onClick={() => {
+                setPageNumber(page => Math.min(numPages, page + 1));
+                resetToolbarHideTimer();
+              }}
               disabled={pageNumber >= numPages}
               className="p-2 hover:bg-white/10 text-white rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               aria-label="Next page"
@@ -72,7 +111,10 @@ export default function PDFViewer({ file }: PDFViewerProps) {
           </>
         )}
         <button
-          onClick={handleDownload}
+          onClick={() => {
+            handleDownload();
+            resetToolbarHideTimer();
+          }}
           className="p-2 hover:bg-white/10 text-white rounded-full transition-colors"
           aria-label="Download PDF"
         >
