@@ -1,58 +1,36 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import katex from 'katex';
+import { Fragment, useEffect, useState } from 'react';
+import ReactMarkdown, { type Components } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 type Heading = {
   id: string;
   level: number;
   text: string;
+  raw: string;
 };
 
 const LEFT_POSITION = 'min(calc(50vw + 24rem + 1.5rem), calc(100vw - 18rem))';
 
-function renderHeadingLabel(text: string) {
-  const parts: Array<{ type: 'text' | 'math'; value: string }> = [];
-  const mathRegex = /\$(.+?)\$/g;
-  let lastIndex = 0;
-  let match: RegExpExecArray | null;
+const remarkPlugins = [remarkGfm, remarkMath];
+const rehypePlugins = [rehypeKatex];
 
-  while ((match = mathRegex.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push({ type: 'text', value: text.slice(lastIndex, match.index) });
-    }
-    parts.push({ type: 'math', value: match[1] });
-    lastIndex = match.index + match[0].length;
-  }
-
-  if (lastIndex < text.length) {
-    parts.push({ type: 'text', value: text.slice(lastIndex) });
-  }
-
-  if (parts.length === 0) {
-    return text;
-  }
-
-  return parts.map((part, index) => {
-    if (part.type === 'text') {
-      return (
-        <span key={`text-${index}`}>
-          {part.value}
-        </span>
-      );
-    }
-
+const inlineComponents: Components = {
+  p: ({ children }) => <Fragment>{children}</Fragment>,
+  strong: ({ children }) => <strong className="font-semibold text-neutral-800">{children}</strong>,
+  em: ({ children }) => <em className="italic">{children}</em>,
+  del: ({ children }) => <del className="text-neutral-400">{children}</del>,
+  code({ children }) {
     return (
-      <span
-        key={`math-${index}`}
-        className="inline-block align-middle"
-        dangerouslySetInnerHTML={{
-          __html: katex.renderToString(part.value, { throwOnError: false }),
-        }}
-      />
+      <code className="px-1 rounded bg-neutral-200/70 text-neutral-800 font-mono text-xs">
+        {children}
+      </code>
     );
-  });
-}
+  },
+};
 
 export default function TableOfContents({ headings }: { headings: Heading[] }) {
   const [top, setTop] = useState(128);
@@ -94,7 +72,13 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
                   href={`#${heading.id}`}
                   className="block rounded text-neutral-600 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300"
                 >
-                  {renderHeadingLabel(heading.text)}
+                  <ReactMarkdown
+                    remarkPlugins={remarkPlugins}
+                    rehypePlugins={rehypePlugins}
+                    components={inlineComponents}
+                  >
+                    {heading.raw}
+                  </ReactMarkdown>
                 </a>
               </li>
             ))}

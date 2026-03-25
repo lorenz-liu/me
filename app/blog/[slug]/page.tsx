@@ -11,6 +11,7 @@ type Heading = {
   id: string;
   level: number;
   text: string;
+  raw: string;
 };
 
 const HEADING_REGEX = /^(#{2,4})\s+(.+)$/gm;
@@ -50,6 +51,7 @@ function extractHeadings(markdown: string): Heading[] {
       level,
       text,
       id: slugger(text),
+      raw: rawText,
     });
   }
 
