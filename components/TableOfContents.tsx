@@ -1,6 +1,7 @@
 'use client';
 
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
+import type { MouseEvent } from 'react';
 import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -49,6 +50,35 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
     return () => window.removeEventListener('resize', updateOffset);
   }, []);
 
+  const handleNavigate = useCallback((event: MouseEvent<HTMLAnchorElement>, id: string) => {
+    event.preventDefault();
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const start = window.scrollY;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY;
+    const offset = targetTop - start;
+    const duration = 700;
+    const ease = (t: number) => (t < 0.5
+      ? 16 * Math.pow(t, 5)
+      : 1 - Math.pow(-2 * t + 2, 5) / 2);
+    const startTime = performance.now();
+
+    const step = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const eased = ease(progress);
+      window.scrollTo({ top: start + offset * eased, behavior: 'auto' });
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        history.replaceState(null, '', `#${id}`);
+      }
+    };
+
+    requestAnimationFrame(step);
+  }, []);
+
   if (!headings.length) return null;
 
   return (
@@ -71,6 +101,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
                 <a
                   href={`#${heading.id}`}
                   className="block rounded text-neutral-600 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300"
+                  onClick={event => handleNavigate(event, heading.id)}
                 >
                   <ReactMarkdown
                     remarkPlugins={remarkPlugins}
