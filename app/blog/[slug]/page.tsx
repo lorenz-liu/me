@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import Link from 'next/link';
-import type { ReactNode } from 'react';
+import {JSX, ReactNode} from 'react';
 import Markdown from '@/components/Markdown';
 import TableOfContents from '@/components/TableOfContents';
 import { formatDate } from '@/lib/utils';

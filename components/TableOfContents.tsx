@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import katex from 'katex';
 
 type Heading = {
   id: string;
@@ -10,6 +11,49 @@ type Heading = {
 
 const LEFT_POSITION = 'min(calc(50vw + 24rem + 1.5rem), calc(100vw - 18rem))';
 
+function renderHeadingLabel(text: string) {
+  const parts: Array<{ type: 'text' | 'math'; value: string }> = [];
+  const mathRegex = /\$(.+?)\$/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = mathRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push({ type: 'text', value: text.slice(lastIndex, match.index) });
+    }
+    parts.push({ type: 'math', value: match[1] });
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push({ type: 'text', value: text.slice(lastIndex) });
+  }
+
+  if (parts.length === 0) {
+    return text;
+  }
+
+  return parts.map((part, index) => {
+    if (part.type === 'text') {
+      return (
+        <span key={`text-${index}`}>
+          {part.value}
+        </span>
+      );
+    }
+
+    return (
+      <span
+        key={`math-${index}`}
+        className="inline-block align-middle"
+        dangerouslySetInnerHTML={{
+          __html: katex.renderToString(part.value, { throwOnError: false }),
+        }}
+      />
+    );
+  });
+}
+
 export default function TableOfContents({ headings }: { headings: Heading[] }) {
   const [top, setTop] = useState(128);
 
@@ -18,8 +62,8 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
       const nav = document.querySelector('nav');
       if (!nav) return;
       const rect = nav.getBoundingClientRect();
-      const navBottom = rect.top + window.scrollY + rect.height;
-      setTop(Math.max(0, Math.round(navBottom)));
+      const computedTop = rect.top + window.scrollY + rect.height;
+      setTop(Math.max(0, Math.round(computedTop)));
     };
 
     updateOffset();
@@ -50,7 +94,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
                   href={`#${heading.id}`}
                   className="block rounded text-neutral-600 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300"
                 >
-                  {heading.text}
+                  {renderHeadingLabel(heading.text)}
                 </a>
               </li>
             ))}
