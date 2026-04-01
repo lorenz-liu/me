@@ -32,8 +32,6 @@ To make this as straightforward as possible, here is a comparative breakdown of 
 | **Handling "Hallucinations"** | Excellent. Responses can be directly traced back to the retrieved source documents. | Poor. Models can still confidently hallucinate if the answer isn't firmly in the training weights. |
 | **On-Device/Edge** | Difficult. Requires external database calls. | **Excellent.** The knowledge is baked in, allowing for fully offline, fast inference. |
 
----
-
 ### When You Should Choose RAG
 
 *   **You need a "Smart Librarian":** If your app requires the AI to read through an evolving database of PDF reports, user manuals, or user history before answering, RAG is your architecture.
