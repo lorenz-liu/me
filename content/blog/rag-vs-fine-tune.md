@@ -5,14 +5,14 @@ excerpt: "Some ideas on helping decide. "
 tags: ["llm", "rag", "fine-tune"]
 ---
 
-If you are building an AI application right now, you are inevitably going to hit the same wall every developer hits: **"Should I use Retrieval-Augmented Generation (RAG) or should I Fine-Tune my model?"**
+If you are building an AI application right now, you are inevitably going to hit the same wall every developer hits: **"Should I use [Retrieval-Augmented Generation (RAG)](./rag) or should I Fine-Tune my model?"**
 
 If you browse developer forums or read industry deep-dives, you will find passionate arguments for both. But after analyzing the consensus across developer communities and enterprise architectural patterns, a clear playbook emerges.
 
 Here is the bottom line: It is not a battle of which technology is better. It is about picking the right tool for your specific data, model size, and end goal.
 
 Let’s break down the consensus on exactly when to use which.
-
+w
 ## The Golden Rule: Start with RAG
 
 If there is one thing the AI developer community agrees on, it is this: **RAG is your default starting point.**
