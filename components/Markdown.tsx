@@ -51,13 +51,13 @@ const components: Components = {
     );
   },
 
-  // External links open in new tab
+  // Make all markdown links open in a new tab so the reader keeps their place
   a({ href, children }) {
-    const isExternal = href?.startsWith('http');
     return (
       <a
         href={href}
-        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        target="_blank"
+        rel="noopener noreferrer"
         className="underline underline-offset-2 hover:text-neutral-500 transition-colors"
       >
         {children}
