@@ -2,7 +2,7 @@
 title: "Home"
 ---
 
-Greetings! My name is **Zhaoxun "Lorenz" Liu**.
+Greetings! My name is **Zhaoxun "Lorenz" Liu 刘兆薰**.
 
 I am a Team Lead in Machine Learning at [the SARA Lab](https://temertysimcentre.com/surgical-artificial-intelligence-research-academy-sara/), University Health Network (UHN), Toronto, Canada.
 
