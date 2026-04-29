@@ -9,25 +9,28 @@ title: "Timeline"
   description: "Started undergrad at *School of Computer Science and Engineering, Shi-E College, Beihang University*. "
 
 - date: "2023-03-16"
-  description: "<u>IEEE Internet of Things</u> accepted *Temporal Transformer Networks With Self-Supervision for Action Recognition*. "
+  description: "[IEEE Internet of Things](https://ieeexplore.ieee.org/document/10073948) accepted *Temporal Transformer Networks With Self-Supervision for Action Recognition*. "
 
 - date: "2023-07-01"
-  description: "Received <u>B.Eng. in Computer Science and Technology</u> from *Beihang University*. "
+  description: "Received [B.Eng. in Computer Science and Technology](https://scse.buaa.edu.cn/) from *Beihang University*. "
 
 - date: "2023-09-01"
-  description: "Started <u>Master of Science in Applied Computing (MScAC)</u> at *School of Computer Science, University of Toronto*. "
+  description: "Started [Master of Science in Applied Computing (MScAC)](https://mscac.utoronto.ca) at *School of Computer Science, University of Toronto*. "
 
 - date: "2024-05-01"
-  description: "Started working at *University Health Network* as an <u>Intern Machine Learning Researcher</u>. "
+  description: "Started working at *University Health Network* as an Intern Machine Learning Researcher. "
 
 - date: "2024-05-16"
-  description: "<u>International Journal of Human–Computer Interaction</u> accepted *CrossKeys: Text Entry for Virtual Reality Using a Single Controller via Wrist Rotation*. "
+  description: "[International Journal of Human–Computer Interaction](https://www.tandfonline.com/doi/full/10.1080/10447318.2024.2358456) accepted *CrossKeys: Text Entry for Virtual Reality Using a Single Controller via Wrist Rotation*. "
 
 - date: "2025-01-01"
-  description: "Obtained <u>MScAC</u> degree. "
+  description: "Obtained [MScAC](https://mscac.utoronto.ca) degree. "
 
 - date: "2025-02-10"
-  description: "Returned to *University Health Network* as a full-time <u>Machine Learning Specialist</u>. "
+  description: "Returned to *University Health Network* as a full-time Machine Learning Specialist. "
+
+- date: "2025-05-02"
+  description: "[Best Oral Presentation, Gallie Day 2025](https://surgery.utoronto.ca/news/thank-you-2025-gallie-day-gordon-murray-banquet): *Using Artificial Intelligence to Optimize Trauma Patient Transfer and Resource Utilization During Mass-Casualty Incidents: Development and Validation of a Novel Platform for Simulation Training*."
 
 - date: "2026-02-27"
-  description: "<u>SAIL 2026</u> accepted *AI-Driven Decision Support for Mass-Casualty Incident Preparedness Training: Development and Validation of the MasTER Simulation Platform*. "
+  description: "[SAIL 2026](https://sail.health/event/sail-2026/) accepted *AI-Driven Decision Support for Mass-Casualty Incident Preparedness Training: Development and Validation of the MasTER Simulation Platform*. "

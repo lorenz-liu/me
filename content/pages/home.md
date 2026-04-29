@@ -4,7 +4,7 @@ title: "Home"
 
 Greetings! My name is **Zhaoxun "Lorenz" Liu**.
 
-I am a Team Lead in Machine Learning at [the SARA Lab](https://temertysimcentre.com/surgical-artificial-intelligence-research-academy-sara/), University Health Network (UHN).
+I am a Team Lead in Machine Learning at [the SARA Lab](https://temertysimcentre.com/surgical-artificial-intelligence-research-academy-sara/), University Health Network (UHN), Toronto, Canada.
 
 My interests lie in interdisciplinary machine learning, particularly its applications in healthcare and human-computer interaction:
 
@@ -19,5 +19,5 @@ I also play cello, tennis, and guitar.
 </span>
 
 <span style="color: #666666;">
-My favorite artists are The Eagles, Durand Jones & The Indications, Dvorak, and Monet.
+My favorite artists are Michael Jackson, The Eagles, Durand Jones & The Indications, Dvorak, and Monet.
 </span>
