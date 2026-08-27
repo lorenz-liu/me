@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="antialiased">
+    <html lang="en" className="antialiased" suppressHydrationWarning>
       <head>
         <script
           defer
@@ -25,7 +25,7 @@ export default function RootLayout({
           data-website-id="f295dc0e-3bc7-4610-b93d-fef950716c98"
         />
       </head>
-      <body className="min-h-screen bg-white text-black">
+      <body className="min-h-screen bg-white text-black" suppressHydrationWarning>
         <div className="max-w-3xl mx-auto px-6 py-12">
           <nav className="mb-8 border-b pr-3 border-gray-200 flex items-end-safe justify-between relative">
             <MobileNav />

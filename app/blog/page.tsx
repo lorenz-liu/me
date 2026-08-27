@@ -1,42 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import {formatDate} from '@/lib/utils';
+import { getBlogPosts } from '@/lib/blog';
 import BlogList from '@/components/BlogList';
+import type { LocalizedPost } from '@/lib/blog';
 
-type Post = {
-  slug: string;
-  title: string;
-  date: string;
-  formattedDate: string;
-  excerpt: string;
-  tags: string[];
-};
-
-function getBlogPosts(): Post[] {
-  const blogDir = path.join(process.cwd(), 'content/blog');
-  const files = fs.readdirSync(blogDir);
-
-  return files
-    .filter(file => file.endsWith('.md'))
-    .map(file => {
-      const filePath = path.join(blogDir, file);
-      const fileContent = fs.readFileSync(filePath, 'utf8');
-      const {data} = matter(fileContent);
-
-      return {
-        slug: file.replace('.md', ''),
-        title: data.title || 'Untitled',
-        date: data.date || '',
-        formattedDate: formatDate(data.date || '', false),
-        excerpt: data.excerpt || '',
-        tags: data.tags || [],
-      };
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
-
-function getAllTags(posts: Post[]): Array<{ tag: string; count: number }> {
+function getAllTags(posts: LocalizedPost[]): Array<{ tag: string; count: number }> {
   const tagCount = new Map<string, number>();
   posts.forEach(post => {
     post.tags.forEach(tag => {
