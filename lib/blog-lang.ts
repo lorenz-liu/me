@@ -2,7 +2,7 @@ export const BLOG_LANGS = ['zh', 'en', 'fr'] as const;
 
 export type BlogLang = (typeof BLOG_LANGS)[number];
 
-export const DEFAULT_BLOG_LANG: BlogLang = 'zh';
+export const DEFAULT_BLOG_LANG: BlogLang = 'en';
 
 export const BLOG_LANG_STORAGE_KEY = 'blog-lang';
 
